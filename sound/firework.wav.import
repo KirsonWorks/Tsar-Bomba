@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/firework.wav-f579dedd18bf05611689c3a7e587368a.sample"
+
+[deps]
+
+source_file="res://sound/firework.wav"
+dest_files=[ "res://.import/firework.wav-f579dedd18bf05611689c3a7e587368a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0

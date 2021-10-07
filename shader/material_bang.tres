@@ -1,0 +1,58 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float intensity = 0.0;
+uniform float wave = 0.0;
+uniform float density = 1.0;
+uniform vec2 pos = vec2(0, 0);
+
+const vec3 target_color = vec3(1.0, 0.32, 0.08);
+
+float snap(float value, float n)
+{
+	if (n != 0.0)
+		return floor((value + n * 0.5) / n) * n;
+	
+	return value;
+}
+
+void fragment()
+{	
+	vec2 ratio = vec2(1.0);
+	ivec2 size = textureSize(SCREEN_TEXTURE, 0);
+	vec3 rgb = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
+	
+	vec2 location = pos;
+	location.y = 1.0 - location.y;
+	
+	if (size.x > size.y)
+	{
+		ratio.x = 1.0 / (float(size.y) / float(size.x));
+	}
+	else 
+	{
+		ratio.y = 1.0 / (float(size.x) / float(size.y));
+	}
+	
+	float dist = distance(location * ratio, SCREEN_UV * ratio);
+	
+	if (dist < intensity)
+	{
+		vec3 c = mix(vec3(1.0), vec3(0.0), wave);
+		c = mix(c, target_color , dist * (1.0 - wave) * density);
+		COLOR.rgb = vec3(snap(c.r, 0.25), snap(c.g, 0.08), snap(c.b, 0.08));
+	}
+	else
+	{
+		discard;
+	}
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/intensity = 0.0
+shader_param/wave = 0.5
+shader_param/density = 0.0
+shader_param/pos = Vector2( 300, 300 )

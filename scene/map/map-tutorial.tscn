@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/base_map.tscn" type="PackedScene" id=1]
+[ext_resource path="res://texture/background/gray.png" type="Texture" id=2]
+[ext_resource path="res://scene/pickup/apple.tscn" type="PackedScene" id=3]
+[ext_resource path="res://texture/ui/frame02.png" type="Texture" id=4]
+
+[node name="map" instance=ExtResource( 1 )]
+tile_data = PoolIntArray( 0, 10, 3, 1, 10, 131073, 2, 10, 131073, 3, 10, 131073, 4, 10, 131073, 5, 10, 131073, 6, 10, 131073, 7, 10, 131073, 8, 10, 131073, 9, 10, 131073, 10, 10, 131073, 11, 10, 131073, 12, 10, 131073, 13, 10, 131073, 14, 10, 131073, 15, 10, 131073, 16, 10, 131073, 17, 10, 131073, 18, 10, 131073, 19, 10, 4, 65536, 10, 65538, 65546, 3, 65536, 65555, 10, 65536, 131072, 10, 65538, 131091, 10, 65536, 196608, 10, 65538, 196624, 3, 0, 196625, 3, 1, 196626, 3, 1, 196627, 10, 65536, 262144, 10, 65538, 262145, 3, 1, 262146, 3, 1, 262147, 3, 2, 262154, 8, 65536, 262162, 3, 65536, 262163, 10, 65536, 327680, 10, 65538, 327686, 7, 0, 327687, 7, 1, 327688, 7, 1, 327689, 7, 1, 327690, 7, 1, 327691, 7, 1, 327692, 7, 1, 327693, 7, 2, 327699, 10, 65536, 393216, 10, 65538, 393222, 7, 65536, 393223, 7, 65537, 393224, 7, 65537, 393225, 7, 65537, 393226, 7, 3, 393227, 7, 4, 393228, 7, 65537, 393229, 7, 65538, 393235, 10, 65536, 458752, 10, 65538, 458758, 7, 65536, 458759, 7, 65537, 458760, 7, 65537, 458761, 7, 65537, 458762, 7, 65537, 458763, 7, 65537, 458764, 7, 65537, 458765, 7, 65538, 458766, 6, 65537, 458767, 6, 65538, 458771, 10, 65536, 524288, 10, 65538, 524289, 3, 1, 524290, 3, 1, 524291, 3, 2, 524294, 7, 131072, 524295, 7, 131073, 524296, 7, 131073, 524297, 7, 131073, 524298, 7, 131073, 524299, 7, 131073, 524300, 7, 131073, 524301, 7, 131074, 524307, 10, 65536, 589824, 10, 65538, 589841, 8, 65537, 589842, 8, 65538, 589843, 10, 65536, 655360, 10, 65538, 655377, 8, 131073, 655378, 8, 131074, 655379, 10, 65536, 720896, 10, 65539, 720897, 10, 1, 720898, 10, 1, 720899, 10, 1, 720900, 10, 1, 720901, 10, 1, 720902, 10, 1, 720903, 10, 1, 720904, 10, 1, 720905, 10, 1, 720906, 10, 1, 720907, 10, 1, 720908, 10, 1, 720909, 10, 1, 720910, 10, 1, 720911, 10, 1, 720912, 10, 1, 720913, 10, 1, 720914, 10, 1, 720915, 10, 65540 )
+next_map = "map-1-1"
+time_sec = 10.0
+
+[node name="background" parent="." index="0"]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 1280, 768 )
+
+[node name="spawn" parent="." index="1"]
+position = Vector2( 160, 672 )
+
+[node name="finish" parent="." index="2"]
+position = Vector2( 160, 128 )
+
+[node name="apple" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 1184, 160 )
+
+[node name="canvas" type="CanvasLayer" parent="." index="4"]
+layer = 0
+
+[node name="frame" type="NinePatchRect" parent="canvas" index="0"]
+anchor_left = 0.5
+anchor_top = 0.583
+anchor_right = 0.5
+anchor_bottom = 0.583
+margin_left = -240.0
+margin_top = -111.744
+margin_right = 240.0
+margin_bottom = 112.256
+texture = ExtResource( 4 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="brif" type="Label" parent="canvas/frame" index="0"]
+anchor_left = 0.5
+anchor_top = 0.585
+anchor_right = 0.5
+anchor_bottom = 0.585
+margin_left = -224.0
+margin_top = -123.04
+margin_right = 224.0
+margin_bottom = 79.96
+text = "Brif"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

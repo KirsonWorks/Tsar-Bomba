@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://script/scene_game.gd" type="Script" id=1]
+[ext_resource path="res://sound/tada.wav" type="AudioStream" id=2]
+[ext_resource path="res://scene/actor/countdown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/actor/tsar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/fx/bang.tscn" type="PackedScene" id=5]
+[ext_resource path="res://music/game-theme.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scene/fx/post_effect.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scene/dialog/dialog_result.tscn" type="PackedScene" id=8]
+
+[node name="scene_game" type="Node2D"]
+position = Vector2( 0, 1 )
+script = ExtResource( 1 )
+scene_start_fade_type = 1
+scene_finish_fade_type = 0
+
+[node name="tsar" parent="." instance=ExtResource( 4 )]
+position = Vector2( 528, 288 )
+collision/safe_margin = 0.02
+blink_freq = 16.0
+
+[node name="camera" type="Camera2D" parent="tsar"]
+current = true
+process_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1344
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 12.0
+
+[node name="countdown" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = 512.0
+margin_top = 228.0
+margin_right = 546.0
+margin_bottom = 258.0
+target_path = NodePath("../tsar")
+follow_speed = 8.0
+offset = Vector2( -16, -60 )
+visible_end = 0.01
+
+[node name="snd_tada" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "Sounds"
+
+[node name="bang" parent="." instance=ExtResource( 5 )]
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="dialog_result" parent="ui" instance=ExtResource( 8 )]
+visible = false
+
+[node name="post_effect" parent="." instance=ExtResource( 7 )]
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "Music"
+
+[connection signal="killed" from="tsar" to="." method="_on_tsar_killed"]
+[connection signal="continue_action" from="ui/dialog_result" to="." method="_on_dialog_result_continue_action"]
+[connection signal="repeat_action" from="ui/dialog_result" to="." method="_on_dialog_result_repeat_action"]

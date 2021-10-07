@@ -1,0 +1,342 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://texture/background/brown.png" type="Texture" id=1]
+[ext_resource path="res://tile/terrain.tres" type="TileSet" id=2]
+[ext_resource path="res://texture/logo_en.png" type="Texture" id=3]
+[ext_resource path="res://script/scene_menu.gd" type="Script" id=4]
+[ext_resource path="res://scene/fx/post_effect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://script/ui/ui_menu.gd" type="Script" id=6]
+[ext_resource path="res://scene/ui/ui_menu_item.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scene/pickup/apple.tscn" type="PackedScene" id=8]
+[ext_resource path="res://music/menu-theme.ogg" type="AudioStream" id=9]
+[ext_resource path="res://scene/ui/ui_slot_range.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scene/ui/ui_slot_array.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scene/ui/ui_title.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scene/ui/ui_slot_bool.tscn" type="PackedScene" id=14]
+
+[node name="scene_menu" type="Node2D"]
+script = ExtResource( 4 )
+scene_fade_delay = 0.0
+scene_start_fade_type = 1
+scene_finish_fade_type = 0
+
+[node name="background" type="Sprite" parent="."]
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1280, 768 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tiles" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+format = 1
+tile_data = PoolIntArray( 262151, 7, 0, 262152, 7, 1, 262153, 7, 1, 262154, 7, 1, 262155, 7, 1, 262156, 7, 2, 327687, 7, 65536, 327688, 7, 65537, 327689, 7, 65537, 327690, 7, 65537, 327691, 7, 65537, 327692, 7, 65538, 393223, 7, 65536, 393224, 7, 65537, 393225, 7, 65537, 393226, 7, 65537, 393227, 7, 65537, 393228, 7, 65538, 458759, 7, 65536, 458760, 7, 65537, 458761, 7, 65537, 458762, 7, 65537, 458763, 7, 65537, 458764, 7, 65538, 524293, 10, 0, 524294, 10, 1, 524295, 7, 65536, 524296, 7, 65537, 524297, 7, 65537, 524298, 7, 3, 524299, 7, 4, 524300, 7, 65538, 524301, 10, 1, 524302, 10, 2, 589827, 5, 65536, 589829, 10, 65536, 589831, 7, 65536, 589832, 7, 65537, 589833, 7, 65537, 589834, 7, 65537, 589835, 7, 65537, 589836, 7, 65538, 589838, 10, 65538, 589840, 8, 65537, 589841, 8, 65538, 655361, 5, 0, 655362, 5, 1, 655363, 5, 2, 655365, 10, 65536, 655367, 7, 65536, 655368, 7, 65537, 655369, 7, 3, 655370, 7, 4, 655371, 7, 65537, 655372, 7, 65538, 655374, 10, 65538, 655376, 8, 131073, 655377, 8, 131074, 655378, 8, 65536, 720896, 0, 1, 720897, 0, 1, 720898, 0, 1, 720899, 0, 1, 720900, 0, 1, 720901, 0, 1, 720902, 0, 1, 720903, 0, 1, 720904, 0, 1, 720905, 0, 1, 720906, 0, 1, 720907, 0, 1, 720908, 0, 1, 720909, 0, 1, 720910, 0, 1, 720911, 0, 1, 720912, 0, 1, 720913, 0, 1, 720914, 0, 1, 720915, 0, 1 )
+
+[node name="apple" parent="." instance=ExtResource( 8 )]
+position = Vector2( 400, 480 )
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="texture_logo_shadow" type="TextureRect" parent="ui"]
+modulate = Color( 0.133333, 0.109804, 0.101961, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -264.0
+margin_top = 44.0
+margin_right = 264.0
+margin_bottom = 316.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="texture_logo" type="TextureRect" parent="ui"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_top = 44.0
+margin_right = 256.0
+margin_bottom = 300.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menu_main" type="Control" parent="ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+parent_menu = null
+hide_parent_menu = false
+return_item = null
+
+[node name="item_new_game" parent="ui/menu_main" instance=ExtResource( 7 )]
+margin_left = 528.0
+margin_top = 304.0
+margin_right = 752.0
+margin_bottom = 352.0
+focus_neighbour_top = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_quit")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_continue")
+focus_next = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_continue")
+focus_previous = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_quit")
+title = "NewGame"
+
+[node name="item_continue" parent="ui/menu_main" instance=ExtResource( 7 )]
+margin_left = 528.0
+margin_top = 384.0
+margin_right = 752.0
+margin_bottom = 432.0
+focus_neighbour_top = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_new_game")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_options")
+focus_next = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_options")
+focus_previous = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_new_game")
+title = "Continue"
+
+[node name="item_options" parent="ui/menu_main" instance=ExtResource( 7 )]
+margin_left = 528.0
+margin_top = 464.0
+margin_right = 752.0
+margin_bottom = 512.0
+focus_neighbour_top = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_continue")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_credits")
+focus_next = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_credits")
+focus_previous = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_continue")
+title = "Settings"
+
+[node name="item_credits" parent="ui/menu_main" instance=ExtResource( 7 )]
+margin_left = 528.0
+margin_top = 544.0
+margin_right = 752.0
+margin_bottom = 592.0
+focus_neighbour_top = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_options")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_quit")
+focus_next = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_quit")
+focus_previous = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_options")
+title = "Credits"
+
+[node name="item_quit" parent="ui/menu_main" instance=ExtResource( 7 )]
+margin_left = 528.0
+margin_top = 633.0
+margin_right = 752.0
+margin_bottom = 681.0
+focus_neighbour_top = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_credits")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_new_game")
+focus_next = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_new_game")
+focus_previous = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_main/item_credits")
+title = "Quit"
+
+[node name="menu_options" type="Control" parent="ui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+vertical = false
+parent_menu = NodePath("../menu_main")
+return_item = NodePath("item_back")
+
+[node name="title" type="Label" parent="ui/menu_options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 288.0
+margin_right = 176.0
+margin_bottom = 318.0
+text = "Settings"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sound" type="Label" parent="ui/menu_options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 352.0
+margin_right = -26.0
+margin_bottom = 382.0
+text = "Sounds"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music" type="Label" parent="ui/menu_options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_top = 416.0
+margin_right = -26.0
+margin_bottom = 446.0
+text = "Music"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="resolution" type="Label" parent="ui/menu_options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 480.0
+margin_right = -24.0
+margin_bottom = 510.0
+text = "Screen"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullscreen" type="Label" parent="ui/menu_options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -176.0
+margin_top = 544.0
+margin_right = -24.0
+margin_bottom = 574.0
+text = "Fullscreen"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="slot_sound" parent="ui/menu_options" instance=ExtResource( 11 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -16.0
+margin_top = 344.0
+margin_right = 160.0
+margin_bottom = 392.0
+step = 10.0
+
+[node name="slot_music" parent="ui/menu_options" instance=ExtResource( 11 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -16.0
+margin_top = 408.0
+margin_right = 160.0
+margin_bottom = 456.0
+step = 10.0
+
+[node name="slot_resolution" parent="ui/menu_options" instance=ExtResource( 12 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -16.0
+margin_top = 472.0
+margin_right = 160.0
+margin_bottom = 520.0
+updown_at_click = true
+data = [ "800x600", "1024x768", "1280x720", "1280x800", "1280x1024", "1360x768", "1366x768", "1440x900", "1600x900", "1680x1050", "1920x1080" ]
+cycle = true
+
+[node name="slot_fullscreen" parent="ui/menu_options" instance=ExtResource( 14 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -16.0
+margin_top = 536.0
+margin_right = 160.0
+margin_bottom = 584.0
+updown_at_click = true
+
+[node name="item_back" parent="ui/menu_options" instance=ExtResource( 7 )]
+margin_left = 480.0
+margin_top = 632.0
+margin_right = 624.0
+margin_bottom = 680.0
+focus_neighbour_left = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_apply")
+focus_neighbour_top = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_apply")
+focus_neighbour_right = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_apply")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_apply")
+focus_next = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_apply")
+focus_previous = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_apply")
+title = "Back"
+
+[node name="item_apply" parent="ui/menu_options" instance=ExtResource( 7 )]
+margin_left = 656.0
+margin_top = 632.0
+margin_right = 800.0
+margin_bottom = 680.0
+focus_neighbour_left = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_back")
+focus_neighbour_top = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_back")
+focus_neighbour_right = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_back")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_back")
+focus_next = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_back")
+focus_previous = NodePath("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6275/@@6109/@@6110/@@6111/@@6112/@@6113/scene_menu/ui/menu_options/item_back")
+title = "OK"
+
+[node name="menu_credits" type="Control" parent="ui"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+parent_menu = NodePath("../menu_main")
+return_item = NodePath("item_back")
+
+[node name="title" parent="ui/menu_credits" instance=ExtResource( 13 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -96.0
+margin_right = 160.0
+margin_bottom = -66.0
+text = "Credits"
+align = 1
+
+[node name="author" type="Label" parent="ui/menu_credits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -176.0
+margin_top = -32.0
+margin_right = 182.0
+margin_bottom = 244.0
+text = "Author"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="item_back" parent="ui/menu_credits" instance=ExtResource( 7 )]
+margin_left = 576.0
+margin_top = 633.0
+margin_right = 720.0
+margin_bottom = 681.0
+focus_neighbour_top = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_apply")
+focus_neighbour_bottom = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_sound")
+focus_next = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_sound")
+focus_previous = NodePath("/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/scene_menu/ui/screen/menu_options/item_apply")
+title = "Back"
+click_confirm = true
+
+[node name="post_effect" parent="." instance=ExtResource( 5 )]
+
+[node name="snd_theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+bus = "Music"
+
+[connection signal="action" from="ui/menu_main/item_new_game" to="." method="_on_item_new_game_action"]
+[connection signal="action" from="ui/menu_main/item_continue" to="." method="_on_item_continue_action"]
+[connection signal="action" from="ui/menu_main/item_options" to="." method="_on_item_options_action"]
+[connection signal="action" from="ui/menu_main/item_credits" to="." method="_on_item_credits_action"]
+[connection signal="action" from="ui/menu_main/item_quit" to="." method="_on_item_quit_action"]
+[connection signal="action" from="ui/menu_options/item_apply" to="." method="_on_item_apply_action"]
